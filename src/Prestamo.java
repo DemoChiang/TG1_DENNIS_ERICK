@@ -18,6 +18,10 @@ public abstract class Prestamo {
         nombre = n;
     }
 
+    public String getNombre(){
+        return nombre;
+    }
+
 
     public abstract double getTasaInteres();
 
