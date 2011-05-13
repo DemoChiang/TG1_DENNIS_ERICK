@@ -15,6 +15,15 @@ public class PrestamoAuto extends Prestamo {
         super(m, longi, n);
         serieAutoMotor = motor;
         cuotaSeguro = new Cuota[longi];
+
+        double partes = montoPrestamo/longi;
+        double Intereses = (getTasaInteres()*montoPrestamo)/longi;
+
+        for(int A=0; A<cuotas.length; A++)
+           cuotas[A].sumarIntereses(Intereses);
+
+        for(int A=0; A<cuotaSeguro.length;A++)
+            cuotaSeguro[A]=new Cuota(partes,false);
     }
 
     public double getTasaInteres(){
@@ -26,13 +35,13 @@ public class PrestamoAuto extends Prestamo {
     public double saldoPendiente(){
         double saldoPendiente = 0.0;
         for(Cuota x : cuotaSeguro){
-            if(x!=null&&x.pagada==false){
-                saldoPendiente+=x.pagoMensual;
+            if(x!=null&&x.getPagada()==false){
+                saldoPendiente+=x.getPagoMensual();
             }
         }
         for(Cuota s: cuotas){
-            if(s != null&&s.pagada==false){
-                saldoPendiente+=s.pagoMensual;
+            if(s != null&&s.getPagada()==false){
+                saldoPendiente+=s.getPagoMensual();
 
             }
         }

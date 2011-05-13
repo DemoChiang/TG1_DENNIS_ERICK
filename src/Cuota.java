@@ -8,14 +8,24 @@
  * @author Laptop
  */
 class Cuota {
-    public double pagoMensual;
-    public boolean pagada;
+    private double pagoMensual;
+    private boolean pagada;
 
     public Cuota(double pm, boolean p){
         pagoMensual = pm;
         pagada = p;
     }
 
+    public void sumarIntereses(double Int){
+        pagoMensual += Int;
+    }
 
+    public double getPagoMensual(){
+        return pagoMensual;
+    }
+
+    public boolean getPagada(){
+        return pagada;
+    }
 
 }

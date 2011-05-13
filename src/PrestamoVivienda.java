@@ -13,6 +13,10 @@ public class PrestamoVivienda extends Prestamo {
     public PrestamoVivienda(double m, int longi, String n, boolean v){
         super(m,longi,n);
         usaBanprovi = v;
+        double Intereses = (getTasaInteres()*montoPrestamo)/longi;
+
+        for(int A=0; A<cuotas.length; A++)
+            cuotas[A].sumarIntereses(Intereses);
     }
 
     public double getTasaInteres(){
@@ -28,8 +32,8 @@ public class PrestamoVivienda extends Prestamo {
     public double saldoPendiente(){
         double saldoPendiente = 0.0;
         for(Cuota x: cuotas){
-            if(x!=null&&x.pagada==false){
-                saldoPendiente+=x.pagoMensual;
+            if(x!=null&&x.getPagada()==false){
+                saldoPendiente+=x.getPagoMensual();
             }
         }
         return saldoPendiente+57000;
